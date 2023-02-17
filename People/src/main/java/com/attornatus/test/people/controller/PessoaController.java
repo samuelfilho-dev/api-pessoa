@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/pessoa")
+@RequestMapping("/v2/pessoa")
 @RequiredArgsConstructor
 public class PessoaController {
 
@@ -34,6 +34,11 @@ public class PessoaController {
     @PutMapping("atualizar/{id}")
     public Pessoa atualizarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO){
         return pessoaServiceimpl.atualizarPessoa(id,pessoaDTO);
+    }
+
+    @PutMapping("atualizar/endereco/{id}")
+    public Pessoa atualizarEnderecoPrincipalDaPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO){
+        return pessoaServiceimpl.atualizarEnderecoPrincipalDaPessoa(id,pessoaDTO);
     }
 
 }

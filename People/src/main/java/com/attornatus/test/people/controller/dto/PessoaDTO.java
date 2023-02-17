@@ -1,5 +1,6 @@
 package com.attornatus.test.people.controller.dto;
 
+import com.attornatus.test.people.model.Endereco;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -7,9 +8,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
 public class PessoaDTO {
 
     private String nome;

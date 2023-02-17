@@ -8,7 +8,6 @@ import com.attornatus.test.people.repository.PessoaRepository;
 import com.attornatus.test.people.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class PessoaServiceimpl implements PessoaService {
 
-    private final EnderecoRepository enderecoRepository;
+    private final EnderecoServiceimpl enderecoServiceimpl;
     private final PessoaRepository pessoaRepository;
 
     @Override
@@ -29,8 +28,9 @@ public class PessoaServiceimpl implements PessoaService {
         Pessoa novaPessoa = Pessoa.builder()
                 .nome(pessoaDTO.getNome())
                 .dataDeNascimento(pessoaDTO.getDataDeNascimento())
-                .enderecoPrincipal(enderecoRepository.findById(pessoaDTO.getIdDoEnderecoPrincipal()).orElseThrow())
-                .enderecos(enderecoRepository.findAll(Sort.by(Sort.Direction.ASC,"logradouro")))
+                .enderecoPrincipal(enderecoServiceimpl.consultarEnderecoPorId(
+                        pessoaDTO.getIdDoEnderecoPrincipal()
+                ))
                 .build();
 
 
@@ -48,11 +48,27 @@ public class PessoaServiceimpl implements PessoaService {
         Pessoa pessoaAtualizada = consultarPessoaPorId(id);
 
         pessoaAtualizada.setNome(pessoaDTO.getNome());
+
         pessoaAtualizada.setDataDeNascimento(pessoaDTO.getDataDeNascimento());
 
-        log.info("Pessoa '%d' foi Atualizada", id);
+        log.info("Pessoa com '%d' foi Atualizada", id);
 
         return pessoaRepository.save(pessoaAtualizada);
+    }
+
+    @Override
+    public Pessoa atualizarEnderecoPrincipalDaPessoa(Long id, PessoaDTO pessoaDTO) {
+
+//        log.info("O Endereco com '%d' está sendo Atualizado", id);
+//
+//        Pessoa pessoaComEnderecoPrincipalAtualizado = consultarPessoaPorId(id);
+//
+//        pessoaComEnderecoPrincipalAtualizado.setEnderecoPrincipal();
+//
+//        log.info("Endereco com '%d' foi Atualizada", id);
+//
+//        return pessoaRepository.save(pessoaComEnderecoPrincipalAtualizado);
+        return null;
     }
 
     @Override

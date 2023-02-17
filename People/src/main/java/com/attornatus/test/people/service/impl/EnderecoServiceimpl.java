@@ -29,7 +29,7 @@ public class EnderecoServiceimpl implements EnderecoService {
                 .cidade(enderecoDTO.getCidade())
                 .build();
 
-        log.info("Novo Foi Está Sendo Criado");
+        log.info("Novo Endereco Foi Está Sendo Criado");
 
         return enderecoRepository.save(enderecoNovo);
     }
@@ -45,9 +45,18 @@ public class EnderecoServiceimpl implements EnderecoService {
     @Override
     public Endereco buscarPorCEP(String CEP) {
 
-        log.info("Pesquisar Usuario por CEP");
+        log.info("Pesquisar o Endereco por CEP");
 
         return enderecoRepository.findByCEP(CEP);
+    }
+
+    @Override
+    public Endereco consultarEnderecoPorId(Long id) {
+
+        log.info("Pessoa Com '%d' foi consultada", id);
+
+        return enderecoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("O '%d' não foi encontrado".formatted(id)));
     }
 
 }

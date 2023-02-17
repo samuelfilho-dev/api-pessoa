@@ -8,7 +8,11 @@ import java.util.List;
 public interface EnderecoService {
 
     Endereco criarEndereco(EnderecoDTO enderecoDTO);
+
     List<Endereco> listarEnderecos();
 
     Endereco buscarPorCEP(String CEP);
+
+    Endereco consultarEnderecoPorId(Long id);
+
 }

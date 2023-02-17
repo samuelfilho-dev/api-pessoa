@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -21,6 +22,7 @@ public class Pessoa {
   private Long id;
 
   @NotEmpty(message = "Nome é Obrigatorio")
+  @NotNull
   @Size(max = 35, message = "Tamanho maximo é de 35 Digitos")
   private String nome;
 
@@ -28,10 +30,8 @@ public class Pessoa {
   @Size(max = 10, message = "Tamanho maximo é de 10 Digitos")
   private LocalDate dataDeNascimento;
 
-  @OneToMany
-  private List<Endereco> enderecos;
-
   @ManyToOne
   @JoinColumn(name = "endereco_principal_id")
   private Endereco enderecoPrincipal;
+
 }
