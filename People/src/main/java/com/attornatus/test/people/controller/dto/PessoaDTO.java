@@ -14,5 +14,5 @@ public class PessoaDTO {
 
     private String nome;
     private LocalDate dataDeNascimento;
-
+    private Long idDoEnderecoPrincipal;
 }

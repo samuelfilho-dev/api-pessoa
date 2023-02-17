@@ -12,5 +12,4 @@ public class EnderecoDTO {
     private String logradouro;
     private Integer numeroDaCasa;
     private String cidade;
-
 }
