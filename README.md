@@ -37,6 +37,39 @@ cd seu-repositorio
 
 ## Como Usar a API
 
+>---
+>**NOTA**
+> 
+> O Primeiro endereço que utilizador insere será considerado com endereço principal
+> nessa aplicação
+> 
+> O Para Alterar o endereço o cliente devera alterar no path:
+> `http://127.0.0.1:8080/api/v1/endereco/atualizar/principal/`
+> 
+> Passando o `id` como parâmetro 
+> desta aplicação
+>---
+
+ - Essa API utiliza Swagger como a sua documentação, logo para iteração
+acesse:
+
+   - `http://127.0.0.1:8080/swagger-ui/index.html#/`
+   
+
+ - Para Acesso No Banco De Dados:
+
+    `http://127.0.0.1:8080/h2-console/`
+
+    As credenciais padrão para o acesso do banco de dados são
+   - `JDBC URL: jdbc:h2:mem:testdb`
+   - `Username: root`
+   - `Password: root`
+
+- Imagem do Swagger na aplicação
+
+
+- ![img.png](img.png)
+
 
 ## Autor
 
