@@ -1,5 +1,6 @@
 package com.attornatus.test.people.controller.dto;
 
+
 import lombok.*;
 
 @AllArgsConstructor
@@ -12,5 +13,5 @@ public class EnderecoDTO {
     private String logradouro;
     private Integer numeroDaCasa;
     private String cidade;
-
+    private Long idDaPessoa;
 }

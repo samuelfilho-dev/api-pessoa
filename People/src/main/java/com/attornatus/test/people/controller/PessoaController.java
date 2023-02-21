@@ -4,12 +4,15 @@ import com.attornatus.test.people.controller.dto.PessoaDTO;
 import com.attornatus.test.people.model.Pessoa;
 import com.attornatus.test.people.service.impl.PessoaServiceimpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/v2/pessoa")
+@RequestMapping("/api/v1/pessoa")
 @RequiredArgsConstructor
 public class PessoaController {
 
@@ -17,28 +20,29 @@ public class PessoaController {
 
 
     @GetMapping
-    public List<Pessoa> consultarTodasPessoas(){
-        return pessoaServiceimpl.consultarTodasPessoas();
+    public ResponseEntity<List<Pessoa>> consultarTodasPessoas() {
+
+        List<Pessoa> consultarTodasPessoas = pessoaServiceimpl.consultarTodasPessoas();
+
+        return new ResponseEntity<>(consultarTodasPessoas, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Pessoa consultarPessoaPorId(@PathVariable Long id){
-        return pessoaServiceimpl.consultarPessoaPorId(id);
+    public ResponseEntity<Pessoa> consultarPessoaPorId(@PathVariable Long id) {
+
+        Pessoa pessoaConsultada = pessoaServiceimpl.consultarPessoaPorId(id);
+
+        return new ResponseEntity<>(pessoaConsultada, HttpStatus.OK);
     }
 
     @PostMapping
-    public Pessoa incluirPessoa(@RequestBody PessoaDTO pessoaDTO){
-        return pessoaServiceimpl.incluirPessoa(pessoaDTO);
+    public ResponseEntity<Pessoa> incluirPessoa(@RequestBody PessoaDTO pessoaDTO) {
+        return new ResponseEntity<>(pessoaServiceimpl.incluirPessoa(pessoaDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("atualizar/{id}")
-    public Pessoa atualizarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO){
-        return pessoaServiceimpl.atualizarPessoa(id,pessoaDTO);
-    }
-
-    @PutMapping("atualizar/endereco/{id}")
-    public Pessoa atualizarEnderecoPrincipalDaPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO){
-        return pessoaServiceimpl.atualizarEnderecoPrincipalDaPessoa(id,pessoaDTO);
+    public ResponseEntity<Pessoa> atualizarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
+        return new ResponseEntity<>(pessoaServiceimpl.atualizarPessoa(id, pessoaDTO), HttpStatus.OK);
     }
 
 }

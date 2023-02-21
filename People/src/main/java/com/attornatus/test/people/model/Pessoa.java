@@ -1,12 +1,19 @@
 package com.attornatus.test.people.model;
 
-import jakarta.persistence.*;
-import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -17,21 +24,21 @@ import java.time.LocalDate;
 @Table(name = "pessoa")
 public class Pessoa {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @NotEmpty(message = "Nome é Obrigatorio")
-  @NotNull
-  @Size(max = 35, message = "Tamanho maximo é de 35 Digitos")
-  private String nome;
+    @NotEmpty(message = "Nome é Obrigatorio")
+    @NotNull
+    @Size(max = 35, message = "Tamanho maximo é de 35 Digitos")
+    private String nome;
 
-  @NotEmpty(message = "Data De Nascimento é Obrigatorio")
-  @Size(max = 10, message = "Tamanho maximo é de 10 Digitos")
-  private LocalDate dataDeNascimento;
 
-  @ManyToOne
-  @JoinColumn(name = "endereco_principal_id")
-  private Endereco enderecoPrincipal;
+    private LocalDate dataDeNascimento;
 
+    @ManyToOne
+    private Endereco enderecoPrincipal;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Endereco> enderecos;
 }

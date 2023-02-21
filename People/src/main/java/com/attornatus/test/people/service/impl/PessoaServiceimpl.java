@@ -8,7 +8,10 @@ import com.attornatus.test.people.repository.PessoaRepository;
 import com.attornatus.test.people.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,11 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class PessoaServiceimpl implements PessoaService {
-
-    private final EnderecoServiceimpl enderecoServiceimpl;
     private final PessoaRepository pessoaRepository;
 
     @Override
+    @Transactional
     public Pessoa incluirPessoa(PessoaDTO pessoaDTO) {
 
         log.info("Nova Pessoa Está Sendo Criada");
@@ -28,9 +30,8 @@ public class PessoaServiceimpl implements PessoaService {
         Pessoa novaPessoa = Pessoa.builder()
                 .nome(pessoaDTO.getNome())
                 .dataDeNascimento(pessoaDTO.getDataDeNascimento())
-                .enderecoPrincipal(enderecoServiceimpl.consultarEnderecoPorId(
-                        pessoaDTO.getIdDoEnderecoPrincipal()
-                ))
+                .enderecoPrincipal(pessoaDTO.getEnderecos().get(0))
+                .enderecos(pessoaDTO.getEnderecos())
                 .build();
 
 
@@ -57,34 +58,19 @@ public class PessoaServiceimpl implements PessoaService {
     }
 
     @Override
-    public Pessoa atualizarEnderecoPrincipalDaPessoa(Long id, PessoaDTO pessoaDTO) {
-
-//        log.info("O Endereco com '%d' está sendo Atualizado", id);
-//
-//        Pessoa pessoaComEnderecoPrincipalAtualizado = consultarPessoaPorId(id);
-//
-//        pessoaComEnderecoPrincipalAtualizado.setEnderecoPrincipal();
-//
-//        log.info("Endereco com '%d' foi Atualizada", id);
-//
-//        return pessoaRepository.save(pessoaComEnderecoPrincipalAtualizado);
-        return null;
-    }
-
-    @Override
     public Pessoa consultarPessoaPorId(Long id) {
 
         log.info("Pessoa Com '%d' foi consultada", id);
 
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("O '%d' não foi encontrado".formatted(id)));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pessoa Não Encontrada"));
 
     }
 
     @Override
     public List<Pessoa> consultarTodasPessoas() {
 
-        log.info("A Lista de Pessoas está sendo consultada");
+        log.info("Listando Todas As Pessoas");
 
         return pessoaRepository.findAll();
     }

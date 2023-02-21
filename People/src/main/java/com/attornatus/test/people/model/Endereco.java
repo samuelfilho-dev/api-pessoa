@@ -2,14 +2,11 @@ package com.attornatus.test.people.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 
@@ -43,4 +40,6 @@ public class Endereco {
     @Size(max = 50, message = "Tamanho maximo de 50 Digitos")
     private String cidade;
 
+    @ManyToOne
+    private Pessoa pessoa;
 }
