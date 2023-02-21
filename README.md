@@ -37,7 +37,7 @@ cd seu-repositorio
 
 ## Como Usar a API
 
->---
+
 >**NOTA**
 > 
 > O Primeiro endereço que utilizador insere será considerado com endereço principal
@@ -48,7 +48,7 @@ cd seu-repositorio
 > 
 > Passando o `id` como parâmetro 
 > desta aplicação
->---
+
 
  - Essa API utiliza Swagger como a sua documentação, logo para iteração
 acesse:
