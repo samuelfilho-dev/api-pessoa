@@ -17,12 +17,12 @@ qual será o endereço principal dessa pessoa cadastrada.
 1. Clone o repositório:
 
 ~~~git
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/samuelfilho-dev/api-pessoa
 ~~~
 2. Entre na pasta do projeto:
 
 ~~~git
-cd seu-repositorio
+cd api-pessoa
 ~~~
 3. Rode o comando para compilar o projeto:
 
