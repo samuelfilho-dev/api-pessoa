@@ -63,7 +63,7 @@ public class PessoaServiceimpl implements PessoaService {
         log.info("Pessoa Com '%d' foi consultada", id);
 
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pessoa Não Encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa Não Encontrada"));
 
     }
 
@@ -73,5 +73,17 @@ public class PessoaServiceimpl implements PessoaService {
         log.info("Listando Todas As Pessoas");
 
         return pessoaRepository.findAll();
+    }
+
+    @Override
+    public void deletarPessoa(Long id) {
+
+        log.info("Deletando a Pessoa");
+
+        Pessoa pessoaDeletada = consultarPessoaPorId(id);
+
+        pessoaRepository.delete(pessoaDeletada);
+
+        log.info("Pessoa Deletada");
     }
 }

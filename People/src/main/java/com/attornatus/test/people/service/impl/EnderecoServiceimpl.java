@@ -62,7 +62,33 @@ public class EnderecoServiceimpl implements EnderecoService {
         log.info("Pessoa Com '%d' foi consultada", id);
 
         return enderecoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Endereco Não Encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereco Não Encontrado"));
+    }
+
+    @Override
+    public void deletarEndereco(Long id) {
+
+        log.info("Deletando Endereco");
+
+        Endereco enderecoDeletado = consultarEnderecoPorId(id);
+
+        enderecoRepository.delete(enderecoDeletado);
+
+        log.info("Pessoa Deletada");
+    }
+
+    @Override
+    public Endereco atualizarEndereco(Long id, EnderecoDTO enderecoDTO) {
+        Endereco enderecoAtualizado = consultarEnderecoPorId(id);
+        Pessoa pessoaPorId = pessoaServiceimpl.consultarPessoaPorId(enderecoDTO.getIdDaPessoa());
+
+        enderecoAtualizado.setCEP(enderecoDTO.getCEP());
+        enderecoAtualizado.setLogradouro(enderecoDTO.getLogradouro());
+        enderecoAtualizado.setNumeroDaCasa(enderecoDTO.getNumeroDaCasa());
+        enderecoAtualizado.setCidade(enderecoDTO.getCidade());
+        enderecoAtualizado.setPessoa(pessoaPorId);
+
+        return enderecoAtualizado;
     }
 
     @Override

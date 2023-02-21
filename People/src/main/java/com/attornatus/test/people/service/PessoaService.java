@@ -9,8 +9,8 @@ public interface PessoaService {
 
     Pessoa incluirPessoa(PessoaDTO pessoaDTO);
     Pessoa atualizarPessoa(Long id, PessoaDTO pessoaDTO);
-
     Pessoa consultarPessoaPorId(Long id);
     List<Pessoa> consultarTodasPessoas();
+    void deletarPessoa(Long id);
 
 }

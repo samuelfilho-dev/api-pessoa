@@ -16,5 +16,10 @@ public interface EnderecoService {
 
     Endereco consultarEnderecoPorId(Long id);
 
+    void deletarEndereco(Long id);
+
+    Endereco atualizarEndereco(Long id, EnderecoDTO enderecoDTO);
+
     Pessoa atualizarEnderecoPrincipalDaPessoa(Long id, EnderecoDTO enderecoDTO);
+
 }

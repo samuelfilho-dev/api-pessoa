@@ -20,22 +20,59 @@ public class EnderecoController {
 
     @GetMapping
     public ResponseEntity<List<Endereco>> listarEnderecos() {
-        return new ResponseEntity<>(enderecoServiceimpl.listarEnderecos(), HttpStatus.OK);
+
+        List<Endereco> listTodosEnderecos = enderecoServiceimpl.listarEnderecos();
+
+        return ResponseEntity.ok(listTodosEnderecos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Endereco> consultarEnderecoPorId(@PathVariable Long id){
+
+        Endereco enderecoPorId = enderecoServiceimpl.consultarEnderecoPorId(id);
+
+        return ResponseEntity.ok(enderecoPorId);
     }
 
     @PostMapping
     public ResponseEntity<Endereco> criarEndereco(@RequestBody EnderecoDTO enderecoDTO) {
-        return new ResponseEntity<>(enderecoServiceimpl.criarEndereco(enderecoDTO), HttpStatus.CREATED);
+
+        Endereco criarEndereco = enderecoServiceimpl.criarEndereco(enderecoDTO);
+
+        return new ResponseEntity<>(criarEndereco, HttpStatus.CREATED);
     }
 
     @GetMapping("/cep/{CEP}")
     public ResponseEntity<Endereco> buscarPorCEP(@PathVariable String CEP) {
-        return new ResponseEntity<>(enderecoServiceimpl.buscarPorCEP(CEP), HttpStatus.OK);
+
+        Endereco buscarPorCEP = enderecoServiceimpl.buscarPorCEP(CEP);
+
+        return ResponseEntity.ok(buscarPorCEP);
     }
 
     @PutMapping("atualizar/endereco/{id}")
-    public ResponseEntity<Pessoa> atualizarEnderecoPrincipalDaPessoa(@PathVariable Long id, @RequestBody EnderecoDTO enderecoDTO) {
-        return new ResponseEntity<>(enderecoServiceimpl.atualizarEnderecoPrincipalDaPessoa(id, enderecoDTO), HttpStatus.OK);
+    public ResponseEntity<Endereco>atualizarEndereco(@PathVariable Long id, @RequestBody EnderecoDTO enderecoDTO){
+
+        Endereco atualizarEndereco = enderecoServiceimpl.atualizarEndereco(id, enderecoDTO);
+
+        return ResponseEntity.ok(atualizarEndereco);
+    }
+
+    @PutMapping("atualizar/endereco/principal/{id}")
+    public ResponseEntity<Pessoa> atualizarEnderecoPrincipalDaPessoa(
+            @PathVariable Long id, @RequestBody EnderecoDTO enderecoDTO) {
+
+        Pessoa enderecoPrincipalDaPessoa = enderecoServiceimpl.atualizarEnderecoPrincipalDaPessoa(id, enderecoDTO);
+
+        return ResponseEntity.ok(enderecoPrincipalDaPessoa);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletarEndereco(@PathVariable Long id){
+
+        enderecoServiceimpl.deletarEndereco(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }

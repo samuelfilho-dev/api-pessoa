@@ -24,7 +24,7 @@ public class PessoaController {
 
         List<Pessoa> consultarTodasPessoas = pessoaServiceimpl.consultarTodasPessoas();
 
-        return new ResponseEntity<>(consultarTodasPessoas, HttpStatus.OK);
+        return ResponseEntity.ok(consultarTodasPessoas);
     }
 
     @GetMapping("/{id}")
@@ -32,17 +32,31 @@ public class PessoaController {
 
         Pessoa pessoaConsultada = pessoaServiceimpl.consultarPessoaPorId(id);
 
-        return new ResponseEntity<>(pessoaConsultada, HttpStatus.OK);
+        return ResponseEntity.ok(pessoaConsultada);
     }
 
     @PostMapping
     public ResponseEntity<Pessoa> incluirPessoa(@RequestBody PessoaDTO pessoaDTO) {
-        return new ResponseEntity<>(pessoaServiceimpl.incluirPessoa(pessoaDTO), HttpStatus.CREATED);
+
+        Pessoa incluirPessoa = pessoaServiceimpl.incluirPessoa(pessoaDTO);
+
+        return new ResponseEntity<>(incluirPessoa, HttpStatus.CREATED);
     }
 
     @PutMapping("atualizar/{id}")
     public ResponseEntity<Pessoa> atualizarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
-        return new ResponseEntity<>(pessoaServiceimpl.atualizarPessoa(id, pessoaDTO), HttpStatus.OK);
+
+        Pessoa atualizarPessoa = pessoaServiceimpl.atualizarPessoa(id, pessoaDTO);
+
+        return ResponseEntity.ok(atualizarPessoa);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPessoa(@PathVariable Long id) {
+
+        pessoaServiceimpl.deletarPessoa(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
