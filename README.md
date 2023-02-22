@@ -1,10 +1,10 @@
-# People API
+# People API 🧑
 
 Essa aplicação cadastra pessoas e os seus endereços dando a possibilidade de salvar
 qual será o endereço principal dessa pessoa cadastrada.
 
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 💻
 
 |  Ferramenta   |  Versão  |
 |:-------------:|:--------:|
@@ -12,7 +12,7 @@ qual será o endereço principal dessa pessoa cadastrada.
 | Java Zulu JDK |  17.0.5  |
 | IntelliJ IDEA | 2022.3.2 |
 
-## Como Ulitilizar o Repositorio Git
+## Como Ulitilizar o Repositorio Git 👨‍💻
 
 1. Clone o repositório:
 
@@ -24,18 +24,9 @@ git clone https://github.com/samuelfilho-dev/api-pessoa
 ~~~git
 cd api-pessoa
 ~~~
-3. Rode o comando para compilar o projeto:
 
-~~~maven
-./gradlew build
-~~~
-4. Rode o projeto:
 
-~~~maven
-./gradlew bootRun
-~~~
-
-## Como Usar a API
+## Como Usar a API ⌨️
 
 
 >**NOTA**
@@ -60,13 +51,20 @@ acesse:
    - `Username: root`
    - `Password: root`
 
+
 - Imagem do Swagger na aplicação
 
 
-- ![img.png](img.png)
+![img.png](img.png)
 
 
-## Autor
+## Modelos 📖
+
+Para Baixar os Modelos JSON 
+
+[Clique Aqui 🖱️](https://bit.ly/3Z0J92A)
+
+## Autor 
 
 <a href="https://www.linkedin.com/in/samuel-filho-981b2b196/">
  <img src="https://avatars.githubusercontent.com/u/81279868?v=4" width="100px;" alt=""/>
@@ -74,7 +72,7 @@ acesse:
 
 Feito Por Samuel Filho 👨‍💻📚
 
-## Dúvidas
+## Dúvidas 💬
 
 Entre em Contato Pelas minhas Redes Sociais.
 
