@@ -42,12 +42,7 @@ cd api-pessoa
 > 
 > O Primeiro endereço que utilizador insere será considerado com endereço principal
 > nessa aplicação
-> 
-> O Para Alterar o endereço o cliente devera alterar no path:
-> `http://127.0.0.1:8080/api/v1/endereco/atualizar/principal/`
-> 
-> Passando o `id` como parâmetro 
-> desta aplicação
+>
 
 
  - Essa API utiliza Swagger como a sua documentação, logo para iteração
