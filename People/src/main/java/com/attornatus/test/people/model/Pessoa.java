@@ -10,8 +10,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,8 +35,8 @@ public class Pessoa {
     private LocalDate dataDeNascimento;
 
     @ManyToOne
-    private Endereco enderecoPrincipal;
+    private Endereco enderecoPrincipal = getEnderecoPrincipal();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
 }

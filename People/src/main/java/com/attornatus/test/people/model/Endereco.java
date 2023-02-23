@@ -25,6 +25,7 @@ public class Endereco {
     @NotNull
     @NotEmpty(message = "CEP é Obrigatorio")
     @Size(max = 8, message = "Tamanho maximo de 8 Digitos")
+    @Column(unique = true)
     private String CEP;
 
     @NotNull

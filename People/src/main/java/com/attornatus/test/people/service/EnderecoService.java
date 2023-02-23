@@ -2,24 +2,17 @@ package com.attornatus.test.people.service;
 
 import com.attornatus.test.people.controller.dto.EnderecoDTO;
 import com.attornatus.test.people.model.Endereco;
-import com.attornatus.test.people.model.Pessoa;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface EnderecoService {
 
     Endereco criarEndereco(EnderecoDTO enderecoDTO);
 
-    List<Endereco> listarEnderecos();
+    Page<Endereco> listarEnderecos(Pageable pageable);
 
-    Endereco buscarPorCEP(String CEP);
+    Endereco consultarPorCEP(String CEP);
 
     Endereco consultarEnderecoPorId(Long id);
-
-    void deletarEndereco(Long id);
-
-    Endereco atualizarEndereco(Long id, EnderecoDTO enderecoDTO);
-
-    Pessoa atualizarEnderecoPrincipalDaPessoa(Long id, EnderecoDTO enderecoDTO);
 
 }

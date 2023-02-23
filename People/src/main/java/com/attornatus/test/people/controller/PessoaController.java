@@ -3,12 +3,13 @@ package com.attornatus.test.people.controller;
 import com.attornatus.test.people.controller.dto.PessoaDTO;
 import com.attornatus.test.people.model.Pessoa;
 import com.attornatus.test.people.service.impl.PessoaServiceimpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -20,9 +21,9 @@ public class PessoaController {
 
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>> consultarTodasPessoas() {
+    public ResponseEntity<Page<Pessoa>> consultarTodasPessoas(Pageable pageable) {
 
-        List<Pessoa> consultarTodasPessoas = pessoaServiceimpl.consultarTodasPessoas();
+        Page<Pessoa> consultarTodasPessoas = pessoaServiceimpl.consultarTodasPessoas(pageable);
 
         return ResponseEntity.ok(consultarTodasPessoas);
     }
@@ -36,7 +37,7 @@ public class PessoaController {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> incluirPessoa(@RequestBody PessoaDTO pessoaDTO) {
+    public ResponseEntity<Pessoa> incluirPessoa(@Valid @RequestBody PessoaDTO pessoaDTO) {
 
         Pessoa incluirPessoa = pessoaServiceimpl.incluirPessoa(pessoaDTO);
 
