@@ -2,6 +2,7 @@ package com.attornatus.test.people.service.impl;
 
 
 import com.attornatus.test.people.controller.dto.PessoaDTO;
+import com.attornatus.test.people.exception.BadResquestException;
 import com.attornatus.test.people.model.Endereco;
 import com.attornatus.test.people.model.Pessoa;
 import com.attornatus.test.people.repository.PessoaRepository;
@@ -11,10 +12,8 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class PessoaServiceimpl implements PessoaService {
         log.info("Pessoa Com id '{}' foi consultada", id);
 
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa Não Encontrada"));
+                .orElseThrow(() -> new BadResquestException ("Pessoa Não Encontrada"));
 
     }
 

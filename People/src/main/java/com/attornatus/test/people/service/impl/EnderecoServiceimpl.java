@@ -1,20 +1,17 @@
 package com.attornatus.test.people.service.impl;
 
 import com.attornatus.test.people.controller.dto.EnderecoDTO;
+import com.attornatus.test.people.exception.BadResquestException;
 import com.attornatus.test.people.model.Endereco;
 import com.attornatus.test.people.model.Pessoa;
 import com.attornatus.test.people.repository.EnderecoRepository;
 import com.attornatus.test.people.service.EnderecoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +22,7 @@ public class EnderecoServiceimpl implements EnderecoService {
     private final EnderecoRepository enderecoRepository;
 
     @Override
+    @Transactional
     public Endereco criarEndereco(EnderecoDTO enderecoDTO) {
 
         Pessoa pessoaPorId = pessoaServiceimpl.consultarPessoaPorId(enderecoDTO.getIdDaPessoa());
@@ -66,7 +64,7 @@ public class EnderecoServiceimpl implements EnderecoService {
         log.info("Pessoa Com '{}' foi consultada", id);
 
         return enderecoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereco Não Encontrado"));
+                .orElseThrow(() -> new BadResquestException("Endereco Não Encontrado"));
     }
 
 
