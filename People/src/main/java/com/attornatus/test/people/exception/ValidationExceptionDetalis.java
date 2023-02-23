@@ -5,6 +5,6 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class BadResquestExceptionDetails extends ExceptionDetalis {
+public class ValidationExceptionDetalis extends ExceptionDetalis {
 
 }
