@@ -47,6 +47,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<ValidationExceptionDetalis> handlerNullPointerException(NullPointerException ex) {
+
+        return new ResponseEntity<>(
+                ValidationExceptionDetalis.builder()
+                        .horario(LocalDateTime.now())
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .titulo("Bad Request Exception, Campo Invalido")
+                        .detalhes("Por Favor, Confira o(s) campo(s)")
+                        .mensagemDesenvolvedor(ex.getClass().getName())
+                        .build(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ValidationExceptionDetalis> handlerDataIntegrityViolationException(
             DataIntegrityViolationException ex){
